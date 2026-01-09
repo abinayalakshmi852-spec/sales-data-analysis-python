@@ -1,36 +1,25 @@
+# Sales Data Analysis
 
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+## About the Project
+This project is designed to analyze sales transactions and extract useful business insights. It takes raw sales data as input, performs calculations and analysis, and produces a clean output dataset that can be used for reporting and evaluation.
 
-# 1. Load and Prepare Data
-df = pd.read_csv('sales_data.csv')
-df['Sale_Date'] = pd.to_datetime(df['Sale_Date'])
-df['Month'] = df['Sale_Date'].dt.to_period('M').astype(str)
+## Features
+- Computes total sales value for each transaction.
+- Summarizes overall revenue and order count.
+- Highlights best-selling and least-performing products.
+- Compares sales performance across product categories.
+- Analyzes monthly sales patterns based on order dates.
+- Organizes and validates raw input data for accuracy.
 
-# 2. Key Metrics
-total_sales = df['Sales_Amount'].sum()
-top_rep = df.groupby('Sales_Rep')['Sales_Amount'].sum().idxmax()
-print(f"Total Revenue: ${total_sales:,.2f}")
-print(f"Top Performer: {top_rep}")
+## Technology Stack
+- Python
+- Pandas
+- Google Colab
+- GitHub
 
-# 3. Monthly Sales Trend
-monthly_sales = df.groupby('Month')['Sales_Amount'].sum()
-plt.figure(figsize=(10, 5))
-monthly_sales.plot(kind='line', marker='o', color='b')
-plt.title('Monthly Sales Trend')
-plt.ylabel('Revenue')
-plt.grid(True)
-plt.show()
+## Data Source
+- Sales transaction data including order ID, order date, product details, category, quantity, and price.
+- Multi-month sales records for trend-based analysis.
 
-# 4. Sales by Category
-plt.figure(figsize=(8, 5))
-sns.barplot(data=df, x='Product_Category', y='Sales_Amount', estimator=sum, ci=None)
-plt.title('Revenue by Category')
-plt.show()
-
-# 5. Relationship Analysis (Heatmap)
-plt.figure(figsize=(8, 6))
-sns.heatmap(df.corr(), annot=True, cmap='RdBu')
-plt.title('Metric Correlations')
-plt.show()
+## Deliverables
+- week2_sales_analysis_output.csv
